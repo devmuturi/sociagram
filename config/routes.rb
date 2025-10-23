@@ -10,9 +10,7 @@ Rails.application.routes.draw do
   }
 
   namespace :api do
-    namespace :users do
-      resources :users, only: [ :show, :update, :destroy ]
-    end
+    resources :users, only: [ :index, :show, :update, :destroy ]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
