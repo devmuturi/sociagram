@@ -5,6 +5,7 @@ import { RouterProvider } from "react-router"
 import { pink } from "@mui/material/colors"
 import './index.css'
 import { router } from './routes/MainRouter'
+import { AuthProvider } from "./context/AuthProvider"
 
 const theme = createTheme({
   typography: { 
@@ -31,8 +32,10 @@ const theme = createTheme({
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ThemeProvider theme={theme}>
-      <RouterProvider router={router}/>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme={theme}>
+        <RouterProvider router={router}/>
+      </ThemeProvider>
+    </AuthProvider>
   </StrictMode>,
 )
