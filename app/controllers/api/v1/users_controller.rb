@@ -55,7 +55,7 @@ class Api::V1::UsersController < ApplicationController
   # GET /api/v1/users/suggestions
   def suggestions
     @users = User.where.not(id: current_user.id).limit(10) # Simple suggestion: users not followed
-    render json: @users.as_json(only: [:id, :name, :email])
+    render json: @users.as_json(only: [ :id, :name, :email ])
   end
 
   # GET /api/v1/users/:id/posts
