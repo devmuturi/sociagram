@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      namespace :post do
+        resources :comments, only: [ :create, :update, :destroy ]
+      end
       resources :users, only: [ :index, :show, :update, :destroy ]
       resources :posts
     end
