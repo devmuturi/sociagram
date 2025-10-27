@@ -11,11 +11,30 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      namespace :post do
-        resources :comments, only: [ :create, :update, :destroy ]
+      resources :users, only: [ :index, :show, :update, :destroy ] do
+        member do
+          post :follow
+          delete :unfollow
+          get :posts, to: "users#user_posts"
+        end
+        collection do
+          get :suggestions
+        end
       end
-      resources :users, only: [ :index, :show, :update, :destroy ]
-      resources :posts
+
+      resources :posts do
+        resources :comments, only: [ :create, :update, :destroy ]
+        member do
+          post :like
+          delete :unlike
+        end
+        collection do
+          get :newsfeed
+        end
+      end
+
+      resources :follows, only: [ :create, :destroy ]
+      resources :likes, only: [ :create, :destroy ]
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

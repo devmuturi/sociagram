@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
-  belongs_to :users
+  belongs_to :user
+  has_many :comments
+  has_many :likes
   has_many_attached :photos
 end
